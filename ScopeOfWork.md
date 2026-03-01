@@ -1,114 +1,122 @@
-รายงานขอบเขตงาน (Scope of Work): โครงการ Enterprise AI Platform By CTS
+จัดทำเป็นรูปแบบ Markdown (.md) ให้เรียบร้อยครับ โดยเน้นโครงสร้างที่อ่านง่าย แยกส่วนความรับผิดชอบ และใช้ตารางรวมถึง Blockquote เพื่อเพิ่มความชัดเจนของเนื้อหาครับ
 
-1. บทนำและวัตถุประสงค์เชิงกลยุทธ์ (Project Overview & Strategic Objectives)
+---
 
-โครงการ Enterprise AI Platform โดย CTS ถูกออกแบบมาเพื่อเป็น Strategic Technical Enablement สำหรับองค์กรขนาดใหญ่ โดยมุ่งเป้าไปที่กลุ่ม Enterprise Architects และ Platform Engineers เพื่อทำลายข้อจำกัดเดิมๆ ของการจัดการทรัพยากร AI คำมั่นสัญญาหลักของแพลตฟอร์ม (Core Promise) วางอยู่บน 3 แกนหลัก: Governance, FinOps และ Self-Service
+# รายงานขอบเขตงาน (Scope of Work)
 
-Design Rationale & Strategic Shift: ยุทธศาสตร์สถาปัตยกรรมนี้มุ่งเน้นการเปลี่ยนผ่านจาก "Ticket-based Requests" ที่ล่าช้า ไปสู่ "Self-service Consumption" ที่รวดเร็วและปลอดภัย โดยมีเหตุผลในการออกแบบ (Design Rationale) เพื่อ Isolate Blast Radius ของระบบ AI, รวมศูนย์การจัดการต้นทุน (Centralized Cost), และรักษามาตรฐานการทำงานที่สอดคล้องกับ FSI Standards (Financial Services Industry) ซึ่งเป็นมาตรฐานความปลอดภัยสูงสุดสำหรับองค์กรการเงิน
+## โครงการ: Enterprise AI Platform By CTS
 
-2. โครงสร้างพื้นฐานทางสถาปัตยกรรม: The 6-Layer Stack
+### 1. บทนำและวัตถุประสงค์เชิงกลยุทธ์ (Project Overview & Strategic Objectives)
 
-ทรัพยากรภายใน AI Platform Account จะถูกบริหารจัดการผ่านโครงสร้าง 6 ชั้น (Layer Cake) โดยมี Platform Engineering Team เป็นผู้ดูแลรับผิดชอบทั้งหมด (Layers 1-6) เพื่อให้เกิดมาตรฐานความปลอดภัยและประสิทธิภาพสูงสุด
+โครงการ **Enterprise AI Platform โดย CTS** ออกแบบมาเพื่อเป็น *Strategic Technical Enablement* สำหรับองค์กรขนาดใหญ่ มุ่งเน้นกลุ่ม Enterprise Architects และ Platform Engineers เพื่อทลายข้อจำกัดในการจัดการทรัพยากร AI โดยยึดหลัก 3 แกนสำคัญ: **Governance, FinOps และ Self-Service**
 
-ชั้น (Layer)	ชื่อชั้น (Layer Name)	ส่วนประกอบสำคัญและบริการ AWS (Key Components/AWS Services)
-Layer 6	Observability & FinOps	Central logs, Cost allocation tags
-Layer 5	AI Runtime Layer	Amazon Bedrock, Amazon SageMaker, Amazon EKS, Vector DBs
-Layer 4	AI Gateway Layer	Multi-tenant metering, AuthZ, Rate limiting
-Layer 3	Provisioning Layer	GitOps, Terraform, Policy-as-Code
-Layer 2	Portal / IDP Layer	Web Console & Marketplace (The Face)
-Layer 1	Identity & Access	AWS IAM Identity Center (SSO), RBAC mapping
+* **Design Rationale:** เปลี่ยนผ่านจากระบบ "Ticket-based" ที่ล่าช้า ไปสู่ "Self-service Consumption"
+* **Strategic Shift:** เน้นการ Isolate Blast Radius, รวมศูนย์การจัดการต้นทุน (Centralized Cost) และรักษามาตรฐานความปลอดภัยระดับ **FSI Standards** (Financial Services Industry)
 
+---
 
---------------------------------------------------------------------------------
+### 2. โครงสร้างพื้นฐานทางสถาปัตยกรรม: The 6-Layer Stack
 
+ทรัพยากรจะถูกบริหารจัดการผ่านโครงสร้าง 6 ชั้น (Layer Cake) โดยทีม **Platform Engineering** เป็นผู้ดูแลรับผิดชอบทั้งหมด เพื่อมาตรฐานความปลอดภัยสูงสุด
 
-3. ขอบเขตความรับผิดชอบรายทีม (Scope of Work by Team)
+| ชั้น (Layer) | ชื่อชั้น (Layer Name) | ส่วนประกอบสำคัญและบริการ AWS (Key Components/AWS Services) |
+| --- | --- | --- |
+| **Layer 6** | Observability & FinOps | Central logs, Cost allocation tags |
+| **Layer 5** | AI Runtime Layer | Amazon Bedrock, Amazon SageMaker, Amazon EKS, Vector DBs |
+| **Layer 4** | AI Gateway Layer | Multi-tenant metering, AuthZ, Rate limiting |
+| **Layer 3** | Provisioning Layer | GitOps, Terraform, Policy-as-Code |
+| **Layer 2** | Portal / IDP Layer | Web Console & Marketplace (The Face) |
+| **Layer 1** | Identity & Access | AWS IAM Identity Center (SSO), RBAC mapping |
 
-3.1 ทีม Cloud Infrastructure (Platform & Foundation)
+---
 
-รับผิดชอบการสร้างและดูแลระบบนิเวศ Cloud ทั้งหมดในฐานะ "Provider":
+### 3. ขอบเขตความรับผิดชอบรายทีม (Scope of Work by Team)
 
-* จัดตั้ง AWS Landing Zone Foundation และวาง Multi-account Strategy โดยใช้ AWS Control Tower, Log Archive และ Shared Services
-* บริหารจัดการ AI Platform Account เพื่อทำหน้าที่เป็น Hub สำหรับการให้บริการ AI ไปยัง Spoke App Account A และ Spoke App Account B ผ่านกลไก API Consumption
-* ดูแลรับผิดชอบ Layer 1, 2, 3 และ 6 ของระบบ
-* จัดการด้าน Networking: ออกแบบและดูแล Network Interface, VPC Peering หรือ Transit Gateway เพื่อให้ Spoke Accounts สามารถเชื่อมต่อเข้าใช้งาน AI Services ได้อย่างปลอดภัยภายใต้ Security Guardrails
+#### 3.1 ทีม Cloud Infrastructure (Platform & Foundation)
 
-3.2 ทีม Data Engineering (Data Pipeline & Processing)
+*รับผิดชอบในฐานะ "Provider" ของระบบนิเวศ Cloud:*
 
-รับผิดชอบการเตรียมทรัพยากรข้อมูลที่ใช้ขับเคลื่อนโมเดล AI:
+* จัดตั้ง **AWS Landing Zone Foundation** และวาง Multi-account Strategy (Control Tower, Log Archive)
+* บริหารจัดการ **AI Platform Account (Hub)** เพื่อให้บริการแก่ Spoke App Accounts ผ่าน API
+* ดูแลรับผิดชอบ Layer 1, 2, 3 และ 6
+* จัดการด้าน **Networking** (VPC Peering, Transit Gateway) ภายใต้ Security Guardrails
 
-* สร้าง Data Ingestion & Processing Layer (Clean & Transform) เพื่อจัดการข้อมูลระดับ Enterprise
-* บริหารจัดการ Vector Databases และ Knowledge Bases ภายใน Amazon Bedrock เพื่อรองรับการสืบค้นข้อมูลที่แม่นยำ (Vector Search)
-* เชื่อมต่อกับแหล่งข้อมูลภายในองค์กร (Enterprise Data Sources) เพื่อสร้างท่อข้อมูล (Data Pipelines) สำหรับ AI
+#### 3.2 ทีม Data Engineering (Data Pipeline & Processing)
 
-3.3 ทีม AI/ML (Model & Inference)
+*รับผิดชอบการเตรียมทรัพยากรข้อมูล:*
 
-รับผิดชอบวงจรชีวิตของโมเดลและการให้บริการประมวลผล (Inference):
+* สร้าง **Data Ingestion & Processing Layer** สำหรับข้อมูลระดับ Enterprise
+* บริหารจัดการ **Vector Databases** และ Knowledge Bases บน Amazon Bedrock
+* สร้าง **Data Pipelines** เชื่อมต่อกับแหล่งข้อมูลภายในองค์กร (Enterprise Data Sources)
 
-* บริหารจัดการ Model Training & Development Layer (Train & Fine-tune) ผ่าน Amazon SageMaker
-* ดูแล AI Runtime Layer (Layer 5) โดยใช้ Amazon Bedrock เป็นหัวใจหลักในการดึงความสามารถของ Foundation Models
-* ออกแบบและจัดการ AI Gateway Layer (Layer 4) เพื่อทำระบบ Metering และควบคุมการเข้าถึงโมเดลในระดับ Multi-tenant
+#### 3.3 ทีม AI/ML (Model & Inference)
 
-3.4 ทีม Application Development (Agent & Consumption)
+*รับผิดชอบวงจรชีวิตของโมเดลและการประมวลผล:*
 
-รับผิดชอบการสร้าง User Experience และ AI Agents สำหรับธุรกิจ:
+* บริหารจัดการ **Model Training & Development** ผ่าน Amazon SageMaker
+* ดูแล **AI Runtime Layer (Layer 5)** โดยใช้ Amazon Bedrock เป็นหลัก
+* ออกแบบ **AI Gateway Layer (Layer 4)** เพื่อทำระบบ Metering และควบคุม Multi-tenant access
 
-* พัฒนา AI Agent & Orchestration Layer (Orchestrate & Automate)
-* สร้าง Unified Consumption Layer ซึ่งประกอบด้วย:
-  * Chat/Assistant: ระบบ RAG (Retrieval-Augmented Generation) และ Knowledge Bases
-  * Document Intelligence: ความสามารถด้าน Summarization, Extraction และ Classification
-  * Developer Copilot: เครื่องมือช่วยเหลือด้าน Code assistance และ DevSecOps automation (รวมถึง PR Reviewer bots)
-  * Enterprise Integration: เชื่อมต่อ Workflow bots เข้ากับระบบ CRM, ERP และ ITSM
-* ดูแลส่วน Production & Consumption Layer ผ่านระบบ AI Marketplace
+#### 3.4 ทีม Application Development (Agent & Consumption)
 
+*รับผิดชอบ User Experience และ Business Logic:*
 
---------------------------------------------------------------------------------
-
-
-4. ยุทธศาสตร์การบริหารจัดการต้นทุน (FinOps & Cost Model)
-
-เราใช้ 4-Layer Cost Model เพื่อเปลี่ยนจากการเก็บเงินแบบเหมารวม (Opaque Bills) ไปสู่การเรียกเก็บตามการใช้งานจริง (Precise Chargeback) โดยหัวใจสำคัญคือ "Granularity Increases"—ยิ่งลงลึกถึงชั้นบนสุด ความละเอียดของการติดตามต้นทุนจะยิ่งสูงขึ้น
-
-1. Account-level: โครงสร้างพื้นฐานร่วม (Shared infra เช่น Amazon EKS, Network, Logs)
-2. Service-level: ทรัพยากรแยกตามการติดตั้ง (Per-deployment resources เช่น Vector DBs)
-3. Inference-level: ต้นทุนราย Token (Per-token costs ของ Amazon Bedrock และ Amazon SageMaker)
-4. Pipeline-level: ค่าใช้จ่ายในการสร้างระบบครั้งเดียว (One-time build costs)
-
-กลไกการควบคุม (Mechanics of Control):
-
-* Tagging Strategy: บังคับใช้ Tag พื้นฐาน (CostCenter, Team, App, Agent) ในทุกทรัพยากร
-* Bedrock Innovation: ใช้ Application Inference Profiles เพื่อติดตามการเรียกใช้โมเดลราย Tenant/Team เพื่อการจัดสรรงบประมาณที่แม่นยำ
-* Gateway Metering: ใช้ Internal SaaS Meter ภายใน Gateway เพื่อตรวจสอบการใช้งานจริง (Regulate access and billing)
+* พัฒนา **AI Agent & Orchestration Layer**
+* สร้าง **Unified Consumption Layer** ซึ่งประกอบด้วย:
+* *Chat/Assistant:* ระบบ RAG และ Knowledge Bases
+* *Document Intelligence:* การทำ Summarization และ Extraction
+* *Developer Copilot:* ระบบ Code assistance และ PR Reviewer bots
+* *Enterprise Integration:* เชื่อมต่อ Workflow เข้ากับ CRM, ERP และ ITSM
 
 
---------------------------------------------------------------------------------
 
+---
 
-5. กระบวนการส่งมอบงานในรูปแบบ Industrialized Software Delivery
+### 4. ยุทธศาสตร์การบริหารจัดการต้นทุน (FinOps & Cost Model)
 
-การส่งมอบงานจะทำผ่าน Internal Developer Platform (IDP) ซึ่งเปลี่ยนการทำงานแบบ Manual เป็นระบบอัตโนมัติ โดยมี Terraform เป็นเครื่องยนต์หลัก (The Engine):
+ใช้รูปแบบ **4-Layer Cost Model** เพื่อเปลี่ยนจากงบประมาณแบบเหมารวม ไปสู่การเรียกเก็บตามจริง (**Precise Chargeback**)
 
-1. Select: ผู้ใช้เลือก Blueprint ที่ต้องการจาก Marketplace
-2. Generate: แพลตฟอร์มจะทำการสร้าง Terraform Code โดยอัตโนมัติจาก Blueprint ที่เลือก
-3. Commit: โค้ดที่สร้างขึ้นจะถูกส่งไปยังระบบ Version Control (Git)
-4. Deploy: ระบบ Pipeline ทำการติดตั้งทรัพยากรลงบน AWS (Amazon EKS / Amazon Bedrock) ทันที
+1. **Account-level:** โครงสร้างพื้นฐานร่วม (Shared infra เช่น EKS, Network)
+2. **Service-level:** ทรัพยากรแยกตามการติดตั้ง (Per-deployment เช่น Vector DBs)
+3. **Inference-level:** ต้นทุนราย Token (Amazon Bedrock / SageMaker)
+4. **Pipeline-level:** ค่าใช้จ่ายในการสร้างระบบ (One-time build costs)
 
-คติพจน์ของระบบคือ: “You don’t build servers; you consume services.”
+> **กลไกการควบคุม (Mechanics of Control):**
+> * **Tagging Strategy:** บังคับใช้ Tag (CostCenter, Team, App) ในทุก Resource
+> * **Inference Profiles:** ติดตามการใช้โมเดลราย Tenant เพื่อความแม่นยำ
+> * **Gateway Metering:** ใช้ Internal SaaS Meter เพื่อตรวจสอบและควบคุมการเข้าถึง
+> 
+> 
 
+---
 
---------------------------------------------------------------------------------
+### 5. กระบวนการส่งมอบงาน (Industrialized Software Delivery)
 
+ส่งมอบผ่าน **Internal Developer Platform (IDP)** โดยใช้ **Terraform** เป็นกลไกหลักตามขั้นตอน:
 
-6. รูปแบบประสบการณ์ผู้ใช้ (The User Experience: AI Marketplace)
+1. **Select:** ผู้ใช้เลือก Blueprint จาก Marketplace
+2. **Generate:** ระบบสร้าง Terraform Code อัตโนมัติ
+3. **Commit:** ส่งโค้ดไปยัง Git (Version Control)
+4. **Deploy:** Pipeline ติดตั้งทรัพยากรลงบน AWS (EKS / Bedrock) โดยตรง
 
-AI Platform Console จะเป็นจุดศูนย์กลาง (Centralized Interface) ที่ลดความซับซ้อนของเทคโนโลยี AWS ให้เป็นสิ่งที่เข้าถึงได้ง่ายสำหรับทุก Persona:
+**Motto:** *“You don’t build servers; you consume services.”*
 
-* Golden Paths: เทมเพลตมาตรฐานที่ผ่านการตั้งค่าด้าน Compliance ไว้ล่วงหน้า (Slate Grey: Pre-configured used compliance)
-* Taxonomy: การจัดหมวดหมู่บริการตามบทบาทของผู้ใช้ (Slate Grey: Organized by User Persona) เช่น Business, Ops, Developer หรือ Data/AI
-* One-Click Provisioning: ลดความซับซ้อนของ Infrastructure ทั้งหมดให้เหลือเพียงการคลิก (Slate Grey: Abstracts AWS complexity)
+---
 
-ตัวอย่าง Use Cases ที่พร้อมส่งมอบ:
+### 6. รูปแบบประสบการณ์ผู้ใช้ (The User Experience: AI Marketplace)
 
-* PR Reviewer Bot (Developer): ระบบตรวจสอบโค้ดและสแกนความปลอดภัยอัตโนมัติ
-* HR Q&A Agent (Business): ระบบตอบคำถามจากคู่มือพนักงานผ่าน RAG-based assistant
-* Incident Bot (Ops): ระบบเชื่อมต่อ Slack สำหรับจัดการ Incident ระดับ P1 อัตโนมัติ โดยเชื่อมโยงกับระบบ ITSM
+**AI Platform Console** จะเป็นจุดศูนย์กลางที่ลดความซับซ้อนของเทคโนโลยี AWS (Abstracts complexity) ผ่านคุณสมบัติ:
+
+* **Golden Paths:** เทมเพลตมาตรฐานที่ผ่าน Compliance ล่วงหน้า
+* **Taxonomy:** จัดหมวดหมู่บริการตาม Persona (Business, Ops, Dev, Data)
+* **One-Click Provisioning:** ติดตั้งระบบได้ง่ายเพียงคลิกเดียว
+
+#### ตัวอย่าง Use Cases ที่พร้อมใช้งาน:
+
+* **PR Reviewer Bot:** ตรวจสอบโค้ดและสแกนความปลอดภัยอัตโนมัติ
+* **HR Q&A Agent:** ตอบคำถามพนักงานผ่าน RAG-based assistant
+* **Incident Bot:** เชื่อมต่อ Slack เพื่อจัดการ Incident ระดับ P1 ร่วมกับระบบ ITSM
+
+---
+
+**คุณต้องการให้ผมปรับปรุงส่วนใดเพิ่มเติม หรือต้องการให้ส่งออกเป็นไฟล์ .md เลยไหมครับ?**
