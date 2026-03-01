@@ -25,6 +25,8 @@ This document outlines the technical architecture for an Enterprise-grade AWS AI
 - **Cost Transparency**: Tag-based cost allocation per team/project
 - **Observability**: Full-stack monitoring from API to model inference
 
+<img width="2852" height="3693" alt="enterprise_ai_platform_detailed" src="https://github.com/user-attachments/assets/ac0e4492-996c-4da0-bdb5-472f47535faf" />
+
 ---
 
 ## Layer 1: Identity & Access Layer
