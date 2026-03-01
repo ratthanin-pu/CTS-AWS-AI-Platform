@@ -568,9 +568,9 @@ Outbound:
 See: `enterprise_ai_platform_detailed.png`
 
 ### C. Contact Information
-- **Architecture Team**: ai-platform-arch@enterprise.com
-- **Support**: ai-platform-support@enterprise.com
-- **Security**: security@enterprise.com
+- **Architecture Team**: ai-platform-arch@g-able.com
+- **Support**: ai-platform-support@g-able.com
+- **Security**: security@g-able.com
 
 ---
 
